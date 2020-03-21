@@ -1,0 +1,15 @@
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  border: 1px solid tomato;
+}
+
+.input-element {
+  font-size: 1.5rem;
+  border: 0;
+  white-space: nowrap;
+}
+
+.input-element {
+  flex-grow: 1;
+}
