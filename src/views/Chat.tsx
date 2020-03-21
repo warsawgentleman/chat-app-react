@@ -1,53 +1,41 @@
 import React, { useState } from "react";
-import {
-  Message,
-  MESSAGE_COLOR,
-  Input,
-  Container,
-  Form,
-  Button
-} from "../components";
+import { Message, Input, Container, Form, Button } from "../components";
+import { MessagesContainer } from "../containers";
 
-interface Message {
-  id: string;
-  text: string;
-  author: string;
-  color: MESSAGE_COLOR;
-}
-
-interface ChatProps {
-  messages: Message[];
-}
+interface ChatProps {}
 
 export const Chat: React.FC<ChatProps> = props => {
-  const { messages } = props;
-
   const [value, setValue] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
   };
 
+  const handleSubmit = (send: (val: string) => void) => () => {
+    send(value);
+    setValue("");
+  };
+
   return (
-    <div>
-      {messages.map(({ author, color, text, id }) => (
-        <Message key={id} color={color} author={author}>
-          {text}
-        </Message>
-      ))}
-      <Container stickedToBottom padding="s">
-        <Form
-          onSubmit={() => {
-            setValue("");
-          }}
-        >
-          <Input
-            value={value}
-            onChange={handleChange}
-            button={<Button type="submit">Send</Button>}
-          />
-        </Form>
-      </Container>
-    </div>
+    <MessagesContainer>
+      {({ messages, send }) => (
+        <>
+          {messages.map(({ id, name, color, content }) => (
+            <Message key={id} color={color} author={name}>
+              {content}
+            </Message>
+          ))}
+          <Container stickedToBottom padding="s">
+            <Form onSubmit={handleSubmit(send)}>
+              <Input
+                value={value}
+                onChange={handleChange}
+                button={<Button type="submit">Send</Button>}
+              />
+            </Form>
+          </Container>
+        </>
+      )}
+    </MessagesContainer>
   );
 };

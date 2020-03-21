@@ -4,27 +4,6 @@ import { UserContextProvider } from "./context";
 import { Hello, Chat } from "./views";
 import { ValidRoute } from "./components";
 
-const FAKE_MESSAGES = [
-  {
-    id: "1",
-    text: "Hello",
-    author: "Hermione",
-    color: "Peter" as const
-  },
-  {
-    id: "2",
-    text: "Hello",
-    author: "Harry",
-    color: "John" as const
-  },
-  {
-    id: "3",
-    text: "Hello",
-    author: "Ron",
-    color: "Steve" as const
-  }
-];
-
 const App = () => {
   return (
     <UserContextProvider>
@@ -35,7 +14,7 @@ const App = () => {
             <Hello />
           </Route>
           <ValidRoute exact path="/chat">
-            <Chat messages={FAKE_MESSAGES} />
+            <Chat />
           </ValidRoute>
         </Switch>
       </HashRouter>

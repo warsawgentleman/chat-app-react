@@ -1,23 +1,15 @@
 import React from "react";
 import "./style.css";
 
-export type MESSAGE_COLOR = "Peter" | "John" | "Steve";
-
-const COLORS = {
-  Peter: "#FB1",
-  John: "#C55",
-  Steve: "#60061E"
-};
-
 interface MessageProps {
-  color: MESSAGE_COLOR;
+  color: string;
   author: string;
 }
 
 export const Message: React.FC<MessageProps> = props => {
   const { color, author, children } = props;
 
-  const style = { "--message-color": COLORS[color] } as React.CSSProperties;
+  const style = { "--message-color": color } as React.CSSProperties;
 
   return (
     <div className="message-wrapper" style={style}>
