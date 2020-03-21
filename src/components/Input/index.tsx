@@ -1,9 +1,7 @@
 import React from "react";
 import "./style.css";
 
-interface InputProps {
-  value: string;
-  onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
+interface InputProps extends React.InputHTMLAttributes<{}> {
   button?: JSX.Element;
 }
 

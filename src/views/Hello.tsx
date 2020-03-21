@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Input, Container, Button, Form } from "../components";
+import { Input, Container, Button, Form, ColorPicker } from "../components";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context";
 
@@ -21,9 +21,15 @@ export const Hello = () => {
   return (
     <div>
       <h3>Please tell me what's your name</h3>
-      <Container maxWidth="80%">
+      <Container maxWidth="50%">
         <Form onSubmit={handleSubmit}>
-          <Input value={value} onChange={handleChange} />
+          <Input
+            value={value}
+            onChange={handleChange}
+            placeholder="Your name"
+          />
+          <br />
+          <ColorPicker />
           <br />
           <Button type="submit">Start chatting!</Button>
         </Form>
